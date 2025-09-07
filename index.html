@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar System Scale Detectives - Standards Alignment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .selector-section {
+            background: #f8f9fb;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 2px solid #3498db;
+        }
+
+        .selector-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .state-selector {
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .state-selector:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .standards-display {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .standards-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .standards-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .standards-section {
+            margin-bottom: 25px;
+            background: #f8f9fb;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #3498db;
+        }
+
+        .standards-section h3 {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+
+        .standard-item {
+            background: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .standard-code {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 0.9rem;
+        }
+
+        .standard-text {
+            margin-top: 5px;
+            color: #555;
+        }
+
+        .activity-info {
+            background: #eaf2fb;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #3498db;
+        }
+
+        .activity-info h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            background: #f8f9fb;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .selector-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌌 Solar System Scale Detectives</h1>
+            <p>Standards Alignment Tool for Teachers</p>
+        </div>
+
+        <div class="content">
+            <div class="activity-info">
+                <h3>Activity Overview</h3>
+                <p><strong>Solar System Scale Detectives</strong> engages students in creating an accurate physical scale model of the solar system using mathematical proportional reasoning. Teams calculate planetary distances when the Sun is scaled to 1 meter diameter, then measure and place planets at correct scaled positions. Students discover the shocking reality of how much empty space exists in our solar system while developing systematic measurement skills and connecting their findings to space exploration challenges.</p>
+            </div>
+
+            <div class="selector-section">
+                <div class="selector-label">Select your state or standards framework:</div>
+                <select id="stateSelector" class="state-selector">
+                    <option value="">Choose your state...</option>
+                    <option value="ngss">Next Generation Science Standards (NGSS)</option>
+                    <option value="california">California</option>
+                    <option value="texas">Texas (TEKS)</option>
+                    <option value="florida">Florida</option>
+                    <option value="new_york">New York</option>
+                    <option value="pennsylvania">Pennsylvania</option>
+                    <option value="illinois">Illinois</option>
+                    <option value="ohio">Ohio</option>
+                    <option value="georgia">Georgia</option>
+                    <option value="north_carolina">North Carolina</option>
+                    <option value="michigan">Michigan</option>
+                </select>
+            </div>
+
+            <div id="standardsDisplay" class="standards-display">
+                <!-- Standards content will be populated here -->
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Part of the Conceptual Academy Earth Science Field Journal Series</p>
+        </div>
+    </div>
+
+    <script>
+        const standardsData = {
+            ngss: {
+                title: "Next Generation Science Standards (NGSS)",
+                sections: {
+                    "High School Earth and Space Science": [
+                        {
+                            code: "HS-ESS1-2",
+                            text: "Develop and use a model based on evidence to illustrate the life span of the sun and the role of nuclear fusion in the sun's core to release energy that eventually reaches Earth in the form of radiation."
+                        },
+                        {
+                            code: "HS-ESS1-3",
+                            text: "Communicate scientific ideas about the way stars, over their life cycle, produce elements."
+                        },
+                        {
+                            code: "HS-ESS1-4",
+                            text: "Use mathematical or computational representations to predict the motion of orbiting objects in the solar system."
+                        }
+                    ],
+                    "Science & Engineering Practices": [
+                        {
+                            code: "Using Mathematics and Computational Thinking",
+                            text: "Students use proportional reasoning and scaling calculations to create accurate solar system distance models."
+                        },
+                        {
+                            code: "Developing and Using Models", 
+                            text: "Students develop physical scale models to represent and understand the structure of the solar system."
+                        },
+                        {
+                            code: "Planning and Carrying Out Investigations",
+                            text: "Students systematically measure and document planetary positions in their scale model."
+                        }
+                    ],
+                    "Mathematics Integration": [
+                        {
+                            code: "HSA-CED.A.3",
+                            text: "Represent constraints by systems of linear inequalities and interpret solutions as viable or non-viable options in a modeling context."
+                        },
+                        {
+                            code: "HSN-Q.A.1",
+                            text: "Use units as a way to understand problems and to guide the solution of multi-step problems; choose and interpret units consistently in formulas."
+                        }
+                    ]
+                }
+            },
+            california: {
+                title: "California Science Standards",
+                sections: {
+                    "Earth Science": [
+                        {
+                            code: "ES 1a",
+                            text: "Students know how the differences and similarities among the sun, the terrestrial planets, and the gas planets may have been established during the formation of the solar system."
+                        },
+                        {
+                            code: "ES 1b",
+                            text: "Students know the evidence from Earth and moon rocks indicates that the solar system was formed from a nebular cloud of dust and gas approximately 4.6 billion years ago."
+                        },
+                        {
+                            code: "ES 1f",
+                            text: "Students know the evidence for the dramatic effects that asteroid and comet impacts have had on the history of life on Earth."
+                        }
+                    ],
+                    "Investigation & Experimentation": [
+                        {
+                            code: "IE 1a",
+                            text: "Select and use appropriate tools and technology to perform tests, collect data, analyze relationships, and display data."
+                        },
+                        {
+                            code: "IE 1e",
+                            text: "Distinguish between hypothesis and theory as scientific terms."
+                        },
+                        {
+                            code: "IE 1j",
+                            text: "Recognize the usefulness and limitations of models and theories as scientific representations of reality."
+                        }
+                    ]
+                }
+            },
+            texas: {
+                title: "Texas Essential Knowledge and Skills (TEKS)",
+                sections: {
+                    "Astronomy": [
+                        {
+                            code: "AST 5A",
+                            text: "Research and describe the historical development of the Big Bang Theory, including red shift, cosmic microwave background radiation, and other supporting evidence."
+                        },
+                        {
+                            code: "AST 6A",
+                            text: "Compare and contrast the factors essential to life on Earth such as temperature, water, mass, and gases to the conditions on other planets."
+                        },
+                        {
+                            code: "AST 7A",
+                            text: "Research and describe characteristics of the universe such as age, structure, composition, and evolution."
+                        }
+                    ],
+                    "Earth and Space Science": [
+                        {
+                            code: "ESS 9A",
+                            text: "Research and describe the historical development of the theories of the origin of the universe and solar system."
+                        },
+                        {
+                            code: "ESS 9B",
+                            text: "Research and describe the Big Bang Theory and identify evidence that supports this theory such as background microwave radiation."
+                        }
+                    ]
+                }
+            },
+            florida: {
+                title: "Florida Science Standards",
+                sections: {
+                    "Earth/Space Science": [
+                        {
+                            code: "SC.912.E.5.3",
+                            text: "Describe and predict how the initial mass of a star determines its evolution."
+                        },
+                        {
+                            code: "SC.912.E.5.4",
+                            text: "Explain the physical properties of the Sun and its relationship to Earth."
+                        },
+                        {
+                            code: "SC.912.E.5.5",
+                            text: "Explain the formation of planetary systems based on our knowledge of our Solar System and apply this knowledge to newly discovered planetary systems."
+                        }
+                    ],
+                    "Nature of Science": [
+                        {
+                            code: "SC.912.N.3.5",
+                            text: "Describe the function of models in science, and identify the wide range of models used in science."
+                        },
+                        {
+                            code: "SC.912.N.1.1",
+                            text: "Define a problem based on a specific body of knowledge, ask questions, and form a testable hypothesis."
+                        }
+                    ]
+                }
+            },
+            new_york: {
+                title: "New York State Science Standards",
+                sections: {
+                    "Earth Science": [
+                        {
+                            code: "ES 1.1a",
+                            text: "The solar system consists of the Sun, nine planets, and many moons, comets, and asteroids."
+                        },
+                        {
+                            code: "ES 1.1b",
+                            text: "The Sun is a medium-sized star. The Sun is more than a million times greater in volume than Earth."
+                        },
+                        {
+                            code: "ES 1.1c",
+                            text: "Gravity is the force that keeps planets in orbit around the Sun and the Moon in orbit around the Earth."
+                        }
+                    ],
+                    "Scientific Inquiry": [
+                        {
+                            code: "SI 1.2a",
+                            text: "Devise ways of making observations to test proposed explanations."
+                        },
+                        {
+                            code: "SI 1.3a",
+                            text: "Use various methods of representing and organizing observations and data."
+                        },
+                        {
+                            code: "SI 2.1a",
+                            text: "Identify sources of assumptions and bias in data and evaluate statements based on data."
+                        }
+                    ]
+                }
+            },
+            pennsylvania: {
+                title: "Pennsylvania Science Standards",
+                sections: {
+                    "Earth Sciences": [
+                        {
+                            code: "3.5.10.D",
+                            text: "Explain the behavior and impact of the Earth's weather system."
+                        },
+                        {
+                            code: "3.5.12.D",
+                            text: "Analyze the need for emergency preparedness in response to various geological events."
+                        },
+                        {
+                            code: "3.4.10.A",
+                            text: "Explain concepts about the universe and the solar system."
+                        }
+                    ],
+                    "Mathematical Applications": [
+                        {
+                            code: "3.2.10.C",
+                            text: "Apply the elements of scientific inquiry to solve problems."
+                        },
+                        {
+                            code: "3.2.12.A",
+                            text: "Evaluate experimental information for accuracy and adherence to science processes."
+                        }
+                    ]
+                }
+            },
+            illinois: {
+                title: "Illinois Science Standards",
+                sections: {
+                    "Earth and Space Sciences": [
+                        {
+                            code: "HS-ESS1-2",
+                            text: "Develop and use a model based on evidence to illustrate the life span of the sun and the role of nuclear fusion in the sun's core to release energy."
+                        },
+                        {
+                            code: "HS-ESS1-3",
+                            text: "Communicate scientific ideas about the way stars, over their life cycle, produce elements."
+                        },
+                        {
+                            code: "HS-ESS1-4",
+                            text: "Use mathematical or computational representations to predict the motion of orbiting objects in the solar system."
+                        }
+                    ],
+                    "Science Practices": [
+                        {
+                            code: "Developing Models",
+                            text: "Students create and use physical models to understand astronomical scale and structure."
+                        },
+                        {
+                            code: "Mathematical Thinking",
+                            text: "Students apply proportional reasoning to solve complex scaling problems in astronomy."
+                        }
+                    ]
+                }
+            },
+            ohio: {
+                title: "Ohio Science Standards",
+                sections: {
+                    "Earth and Space Sciences": [
+                        {
+                            code: "ESS.ES.1",
+                            text: "The universe is composed of a variety of different objects, which are organized into systems, each of which develops according to accepted physical processes and laws."
+                        },
+                        {
+                            code: "ESS.ES.2",
+                            text: "The solar system is a collection of objects that are held in orbit around our sun by its gravitational pull on them."
+                        },
+                        {
+                            code: "ESS.ES.3",
+                            text: "The universe can be studied using a variety of equipment to extend our ability to gather information."
+                        }
+                    ],
+                    "Scientific Inquiry": [
+                        {
+                            code: "SI.A.1",
+                            text: "Pose questions and define problems in ways that guide investigation and design."
+                        },
+                        {
+                            code: "SI.A.5",
+                            text: "Develop descriptions, models, explanations and predictions."
+                        }
+                    ]
+                }
+            },
+            georgia: {
+                title: "Georgia Science Standards",
+                sections: {
+                    "Astronomy": [
+                        {
+                            code: "SASt1a",
+                            text: "Compare and contrast the size, composition and surface features of the planets that comprise the solar system as well as the objects that orbit them, including moons, asteroids and comets."
+                        },
+                        {
+                            code: "SASt1b",
+                            text: "Explain the formation of the solar system by analyzing the sun, planets, moons, and other objects within it."
+                        },
+                        {
+                            code: "SASt1c",
+                            text: "Relate the role of gravity to the motions of celestial objects, including planets, satellites and comets."
+                        }
+                    ],
+                    "Mathematical Applications": [
+                        {
+                            code: "SASt1d",
+                            text: "Calculate distances in space using appropriate units (AU, light-years, etc.)."
+                        }
+                    ]
+                }
+            },
+            north_carolina: {
+                title: "North Carolina Science Standards",
+                sections: {
+                    "Earth/Environmental Science": [
+                        {
+                            code: "EEn.1.1.3",
+                            text: "Explain how the formation of the solar system resulted in planets at different distances from the sun with different physical and chemical properties."
+                        },
+                        {
+                            code: "EEn.1.1.4",
+                            text: "Explain how incoming solar radiation, ocean currents, and land masses affect weather and climate."
+                        }
+                    ],
+                    "Scientific Investigation": [
+                        {
+                            code: "EEn.1.1.1",
+                            text: "Explain the use of technology and digital tools as a scientific process skill."
+                        },
+                        {
+                            code: "EEn.1.1.2",
+                            text: "Develop, use and refine models to understand or represent phenomena, processes and relationships."
+                        }
+                    ]
+                }
+            },
+            michigan: {
+                title: "Michigan Science Standards",
+                sections: {
+                    "Earth Science": [
+                        {
+                            code: "HS-ESS1-2",
+                            text: "Develop and use a model based on evidence to illustrate the life span of the sun and the role of nuclear fusion in the sun's core to release energy."
+                        },
+                        {
+                            code: "HS-ESS1-3",
+                            text: "Communicate scientific ideas about the way stars, over their life cycle, produce elements."
+                        },
+                        {
+                            code: "HS-ESS1-4",
+                            text: "Use mathematical or computational representations to predict the motion of orbiting objects in the solar system."
+                        }
+                    ],
+                    "Engineering Design": [
+                        {
+                            code: "HS-ETS1-2",
+                            text: "Design solutions to complex real-world problems by breaking them down into smaller, more manageable problems."
+                        }
+                    ]
+                }
+            }
+        };
+
+        document.getElementById('stateSelector').addEventListener('change', function() {
+            const selectedState = this.value;
+            const displayDiv = document.getElementById('standardsDisplay');
+            
+            if (selectedState && standardsData[selectedState]) {
+                displayStandards(selectedState);
+                displayDiv.style.display = 'block';
+            } else {
+                displayDiv.style.display = 'none';
+            }
+        });
+
+        function displayStandards(state) {
+            const data = standardsData[state];
+            const displayDiv = document.getElementById('standardsDisplay');
+            
+            let html = `
+                <div class="standards-header">
+                    <h2>${data.title}</h2>
+                    <p>Standards addressed by the Solar System Scale Detectives activity</p>
+                </div>
+            `;
+            
+            for (const [sectionName, standards] of Object.entries(data.sections)) {
+                html += `
+                    <div class="standards-section">
+                        <h3>${sectionName}</h3>
+                `;
+                
+                standards.forEach(standard => {
+                    html += `
+                        <div class="standard-item">
+                            <div class="standard-code">${standard.code}</div>
+                            <div class="standard-text">${standard.text}</div>
+                        </div>
+                    `;
+                });
+                
+                html += `</div>`;
+            }
+            
+            displayDiv.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
